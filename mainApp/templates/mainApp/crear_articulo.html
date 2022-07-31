@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Home - Turismo Argentina</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'mainApp/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">"NOMBRE DEL SITIO"</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="pages">Articulos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="mensajes">Centro de Mensajes</a></li>
+                        <!---Mostrar login logout segun corresponda-->
+                        <li class="nav-item"><a class="nav-link active" href="login">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">BLOG de Turismo!</h1>
+                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                </div>
+            </div>
+        </header>
+<!---Aca deberia solo estar la navbar y tener opciones de crear nuevo articulo-->
+
+<h2>Crear Artículo</h2>
+
+    {% if formulario.errors %}
+        <p style="color: red;">Revisar los datos del formulario</p>
+
+    {% endif %}
+    <form id= "form_crear" action="" method="POST">{% csrf_token %}
+        <fieldset id="field_info">
+        <!---
+        <p><label>Ingrese un título: <input id="titulo" type="text" name="titulo" required></label></p>
+        <p><label>Ingrese un subtítulo: </label><input id="subtitulo" type="text" name="subtitulo" required></label></p>
+        <p><label><textarea id="cuerpo" name="cuerpo" rows="10" cols="100" placeholder="Cuerpo del artículo" required></textarea></p>
+        </label>
+        <fieldset id="field_img">
+            <p><label>Adjunte imagen: <input id="img" type="file" name="img" required></label></p>
+        </fieldset>
+        -->
+        <table>
+
+            {{ formulario.as_table }}
+
+        </table>
+        </fieldset>
+        <input type="submit" value="Publicar">
+    </form>
+
