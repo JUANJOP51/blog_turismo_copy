@@ -12,6 +12,9 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'mainApp/css/styles.css' %}" rel="stylesheet" />
     </head>
+    {% block titulo %}
+
+    {% endblock %}
     <body>
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -24,9 +27,16 @@
                         <li class="nav-item"><a class="nav-link" href="about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contacto</a></li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="pages">Articulos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="mensajes">Centro de Mensajes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Message' %}">Centro de Mensajes</a></li>
                         <!---Mostrar login logout segun corresponda-->
-                        <li class="nav-item"><a class="nav-link active" href="accounts/login">Login</a></li>
+                        {% if request.user.is_authenticated %}:
+                        <img src="(Avatar.objects.filter(user=request.user.id) [0].imagen.url)" 
+                        <p class="text-muted small mb-4 mb-1g-o">Hola, {{user.username}} !!</p
+                            <li class="nav-item"><a class="nav-link active" href="{% url 'Logout' %}">Logout</a></li>
+                        % else %
+                            <li class="nav-item"><a class="nav-link active" href="{% url 'Login' %}">Login</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="{% url 'Register' %}">Register</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

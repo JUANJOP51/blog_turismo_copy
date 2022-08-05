@@ -2,18 +2,42 @@
 {% load static %}
 
 {% block cambiar %}
-<h2>Todos los articulos:</h2>
-<!---aca se deberian listar todos los articulos con la view pages-->
-    {% for p in articulos %}
 
-        <li>{{ p }}</li> 
-        <button>
-            <a href="{% url 'eliminar_articulo' p.titulo %}">Eliminar Articulo</a>
-        </button>
-        <button>
-            <a href="{% url 'editar_articulo' p.titulo %}">Editar Articulo</a>
-        </button>
+    <!---<h2>Todos los articulos:</h2>--->
+    {% if request.user.is_authenticated  %}
+        <div class="card-body">
+            <a class="btn btn-primary" href="{% url 'Create' %}">Crear nuevo articulo</a>
+        </div>
+    {% endif %}
+    {% for articulo in object_list %}
+    <div class="col-lg-6">
+        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+        <div class="card-body">
+            <div class="small text-muted">{{ articulo.fecha_mod }}</div>
+            <h2 class="card-title">{{ articulo.titulo }}</h2>
+            <p class="card-text">{{ articulo.cuerpo }}</p>
+            <a class="btn btn-primary" href="{% url 'Detail' articulo.id %}">Detalles →</a>
+            <a class="btn btn-primary" href="{% url 'Edit' articulo.id %}">Editar</a>
+            <a class="btn btn-primary" href="{% url 'Delete' articulo.id %}">Borrar</a>
+        </div>
+    </div>
+    <!---<li>
+        <p></p>
+        <p>
+            <a href="{% url 'Detail' articulo.id %}">Detalles</a>
+            {% if request.user.is_authenticated %}
+                - <a href="{% url 'Edit' articulo.id %}">Editar</a> -
+                <a href="{% url 'Delete' articulo.id %}">Borrar</a> 
+            {% endif %}    
+        </p>
+        {{ p }}</li>--> 
 
     {% endfor %}
 
+{% endblock %}
+
+{% block fecha %}
+        <!---{% for articulo in object_list %}--->
+            <p>{{ articulo.fecha_mod }}</p>
+        <!---{% endfor %}--->
 {% endblock %}

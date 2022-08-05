@@ -1,0 +1,18 @@
+{% extends "mainApp/base.html" %}
+{% load static %}
+{% block contenido_que_cambia %}
+
+<h1>AGREGAR AVATAR: {{ usuario }}</h1>
+
+<form action='{% url 'agregarAvatar' %}' method='POST' enctype= 'multipart/form-data'> {% csrf_token %}
+
+    <table>
+
+        {{formulario.as_table}}
+    </table>
+
+    <input type="submit", value='Agregar'>
+
+>/form
+
+{% endblock %}
